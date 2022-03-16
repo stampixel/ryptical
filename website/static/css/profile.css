@@ -2,7 +2,7 @@ html, body {
     font-family: 'DejaVu Sans Mono', monospace;
     background: #3B3228;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 p {

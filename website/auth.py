@@ -80,4 +80,4 @@ def delete_link(id):
         db.session.commit()
         return redirect(url_for('views.home'))
     except:
-        return "There was a problem deleting that task"
+        return "Try again later."

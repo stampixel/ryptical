@@ -46,11 +46,11 @@
 <div id="right-div">
     <img src="{{ url_for('static', filename='EGURL.jpeg') }}" alt="pfp" class="profile-picture">
     <div class="profile-name">
-        <a href="https://discords.com/bio/p/stampixel">stampixel#1064</a>
+        <a href="https://discords.com/bio/p/stampixel">{{ user.username }}</a>
     </div>
-    <a href="https://github.com/stampixel" class="links">GitHub</a>
-    <a href="https://open.spotify.com/user/%CA%82%CA%88%C9%91%C9%B1%C6%A5%C9%A3" class="links">Spotify</a>
-    <a href="https://www.instagram.com/stamp1xel/" class="links">Instagram</a>
+    {% for link in user.links %}
+    <a href="{{ link.url }}" class="links">{{ link.display_url }}</a>
+    {% endfor %}
 </div>
 
 {% endblock %}
