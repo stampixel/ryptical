@@ -1,0 +1,83 @@
+from flask import Blueprint, redirect, render_template, request, flash, url_for
+from .models import User, Link
+from werkzeug.security import generate_password_hash, check_password_hash
+from . import db # imports it from the __init__ file
+from flask_login import login_user, login_required, logout_user, current_user
+# hasing makes the encrypted thing irriversible
+
+auth = Blueprint('auth', __name__)
+
+
+
+@auth.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        user = User.query.filter_by(username=username).first() # filtering all the user that have that specific username
+        if user: # checks password
+            if check_password_hash(user.password, password): # checks if the password inside the db equals to the hashed(password) that the user entered
+                flash('Logged in successfully!', category='success')
+                login_user(user = User.query.filter_by(username=username).first(), remember=True)
+                
+                
+                return redirect(url_for('views.home'))
+           
+            else:
+                flash('Incorrect password, try again. (contact stampixel to reset it).', category='error')
+        else:
+            flash("Username does nto exist, try registering an account!", category='error')
+
+
+
+    return render_template("login.html", user=current_user)
+
+@auth.route('/logout')
+@login_required #only allows accesss to this route if the user is already logged in
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
+
+@auth.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password1 = request.form['password1']
+        password2 = request.form['password2']
+
+        user = User.query.filter_by(username=username).first()
+        if user:
+            flash("Username already exists, try again!", category='error')
+        elif password1 != password2:
+            flash("Paswords must match!", category='error')
+        elif len(username) > 24:
+            flash("Username must be less than 24 characters!", category='error')
+        elif len(username) < 2:
+            flash("Username to short!", category='error')
+        else:
+            new_user = User(username=username, password=generate_password_hash(password1, method='sha256')) # learn about sha256
+            db.session.add(new_user)
+            db.session.commit()
+            user = User.query.filter_by(username=username).first()   
+            assert user.is_active
+            login_user(user, remember=True)            
+
+            flash("Successfully created account!", category='success')
+            
+            
+            return redirect(url_for('views.home')) # views is the blueprint, home is the function. We could also just do "/"
+
+        print(password2)
+    return render_template("register.html", user=current_user)
+
+@auth.route('/delete/<int:id>')
+def delete_link(id):
+    link_to_delete = Link.query.get_or_404(id)
+
+    try:
+        db.session.delete(link_to_delete)
+        db.session.commit()
+        return redirect(url_for('views.home'))
+    except:
+        return "There was a problem deleting that task"

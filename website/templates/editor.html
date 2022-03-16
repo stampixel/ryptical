@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+
+{% block head %} 
+<title>Home</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div id="left-div">
+    <div class="container">
+
+        {% for link in user.links %}
+        <div class="link">
+            <p>{{ link.display_url }}</p>
+            <a href="{{ link.url }}">{{ link.url }}</a>
+            <div class="buttons">
+                <a href="/delete/{{ link.id }}" >
+                    <button>Delete</button>
+                </a>
+                <a href="/update/{{ link.id }}" >
+                    <button>Update</button>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+  
+
+
+        <div class="form">
+            <form method="POST">
+                <input type="text" name="url" id="url" placeholder="URL">
+                <input type="text" name="display_url" id="display_url" placeholder="Title">
+                <br>
+                <input type="submit" value="Add Link">
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="seperator"></div>
+
+<div id="right-div">
+    <img src="{{ url_for('static', filename='EGURL.jpeg') }}" alt="pfp" class="profile-picture">
+    <div class="profile-name">
+        <a href="https://discords.com/bio/p/stampixel">stampixel#1064</a>
+    </div>
+    <a href="https://github.com/stampixel" class="links">GitHub</a>
+    <a href="https://open.spotify.com/user/%CA%82%CA%88%C9%91%C9%B1%C6%A5%C9%A3" class="links">Spotify</a>
+    <a href="https://www.instagram.com/stamp1xel/" class="links">Instagram</a>
+</div>
+
+{% endblock %}

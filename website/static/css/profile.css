@@ -1,0 +1,125 @@
+html, body {
+    font-family: 'DejaVu Sans Mono', monospace;
+    background: #3B3228;
+    height: 100%;
+    overflow: hidden;
+}
+
+p {
+    color: #beb55b;
+}
+
+a {
+    cursor: pointer;
+    color: #d0c8c6;
+}
+
+button {
+    border: 1px solid #534636;
+    border-radius: 5px;
+    background: #beb55b;
+    color: rgb(255, 255, 255);
+    font-style: italic;
+    padding: 5px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    font-size: 15px;
+}
+   
+button:hover {
+    background-color: white;
+    color: #beb55b;
+    border: 1px solid  white;
+}
+   
+
+#left-div {
+    float: left;
+    width: 60%;
+    /* border: 1px solid green; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border-right: 1px solid rgba(126, 112, 90, 0.5); */
+}
+
+.container {
+    /* border: 1px solid red; */
+    width: 75%;
+    /* background-color: #292929; */
+}
+
+.link {
+    margin: 30px 0px;
+    border-color: #7e705a;
+    background: #534636;
+    border-radius: 6px;
+    padding: 1em;
+}
+
+.link p {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.link a {
+    text-decoration: none;
+}
+
+.buttons {
+    float: right;
+}
+
+.seperator {
+    position: fixed;
+    top: 0;
+    left: 60%;
+    bottom: 0;
+    margin: 0;
+    border: none;
+    border-right: 1px solid rgba(126, 112, 90, 0.5);
+    z-index: 10;
+  }
+
+
+#right-div {
+    float: right;
+    width: 39%;
+    height: 80%;
+    /* border: 1px solid yellow; */
+    margin-bottom: 5em;
+}
+
+#right-div a {
+	text-decoration: none;
+	color: white;
+	transition: color 1s;
+}
+.profile-picture {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
+	height: auto;
+	max-width: 100px;
+	border-radius: 50%;
+}
+
+.profile-name {
+	text-align: center;
+	padding: 30px;
+}
+
+.links {
+	text-align: center;
+	font-weight: bold;
+	margin-top: 20px;
+	padding: 20px;
+	border: 1px solid white;
+	border-width: 2px;
+	width: 290px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 40px;
+}
