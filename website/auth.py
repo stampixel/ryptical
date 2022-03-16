@@ -74,7 +74,6 @@ def register():
 @auth.route('/delete/<int:id>')
 def delete_link(id):
     link_to_delete = Link.query.get_or_404(id)
-
     try:
         db.session.delete(link_to_delete)
         db.session.commit()

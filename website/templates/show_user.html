@@ -9,13 +9,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/show_user.css') }}">
     </head>
-    <body>
-        <img src="{{ url_for('static', filename='EGURL.jpeg') }}" alt="pfp" class="profile-picture">
+
+    {% for info in user.profile %}
+    <body background="{{ info.background }}">
+        <img src="{{ info.pfp }}" alt="pfp" class="profile-picture">
         <div class="profile-name">
-            <a href="https://discords.com/bio/p/stampixel">stampixel#1064</a>
+            <a href="">{{ user.username }}</a>
         </div>
         {% for link in user.links %}
         <a href="{{ link.url }}" class="links">{{ link.display_url }}</a>
         {% endfor %}
     </body>
+    {% endfor %}
 </html>

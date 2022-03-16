@@ -2,7 +2,7 @@
 
 
 {% block head %} 
-<title>Home</title>
+<title>Profile Editor</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
 {% endblock %}
 
@@ -10,6 +10,14 @@
 
 <div id="left-div">
     <div class="container">
+        <div class="form">
+            <form method="POST">
+                <input type="text" name="pfp" id="pfp" placeholder="Profile Image">
+                <input type="text" name="background" id="background" placeholder="Wallpaper">
+                <br>
+                <input type="submit" name="update_profile" value="Update Profile">
+            </form>
+        </div>
 
         {% for link in user.links %}
         <div class="link">
@@ -33,11 +41,9 @@
                 <input type="text" name="url" id="url" placeholder="URL">
                 <input type="text" name="display_url" id="display_url" placeholder="Title">
                 <br>
-                <input type="submit" value="Add Link">
+                <input type="submit" name="add_link" value="Add Link">
             </form>
         </div>
-
-
     </div>
 </div>
 
