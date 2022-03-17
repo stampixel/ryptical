@@ -31,8 +31,11 @@ def home():
                     background = delete_profile.background
 
                 try:
-                    db.session.delete(delete_profile)
-                    db.session.commit()
+                    try:
+                        db.session.delete(delete_profile)
+                        db.session.commit()
+                    except:
+                        pass
 
                     # GET THAT CHECKED, THE PROFILE ISNT BEING ADDED TO THE DATABASE FOR SOME REASON
                     new_profile = Profile(pfp=pfp, background=background, user_id=current_user.id)

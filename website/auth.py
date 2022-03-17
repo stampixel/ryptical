@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, flash, url_for
-from .models import User, Link
+from .models import User, Link, Profile
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db # imports it from the __init__ file
 from flask_login import login_user, login_required, logout_user, current_user
@@ -61,7 +61,11 @@ def register():
             db.session.commit()
             user = User.query.filter_by(username=username).first()   
             assert user.is_active
-            login_user(user, remember=True)            
+            login_user(user, remember=True)  
+
+            defualt_profile = Profile(pfp='https://i.imgur.com/eNsgEu8.png', background="https://i.imgur.com/CgGv8p8.png", user_id=current_user.id)
+            db.session.add(defualt_profile)
+            db.session.commit()          
 
             flash("Successfully created account!", category='success')
             

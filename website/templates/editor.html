@@ -12,8 +12,8 @@
     <div class="container">
         <div class="form">
             <form method="POST">
-                <input type="text" name="pfp" id="pfp" placeholder="Profile Image">
-                <input type="text" name="background" id="background" placeholder="Wallpaper">
+                <input type="text" name="pfp" id="pfp" placeholder="Profile Image URL">
+                <input type="text" name="background" id="background" placeholder="Wallpaper URL">
                 <br>
                 <input type="submit" name="update_profile" value="Update Profile">
             </form>
@@ -50,9 +50,11 @@
 <div class="seperator"></div>
 
 <div id="right-div">
-    <img src="{{ url_for('static', filename='EGURL.jpeg') }}" alt="pfp" class="profile-picture">
+    {% for info in user.profile %}
+    <img src="{{ info.pfp }}" alt="pfp" class="profile-picture">
+    {% endfor %}
     <div class="profile-name">
-        <a href="https://discords.com/bio/p/stampixel">{{ user.username }}</a>
+        <a href="@{{ user.username }}">{{ user.username }}</a>
     </div>
     {% for link in user.links %}
     <a href="{{ link.url }}" class="links">{{ link.display_url }}</a>
