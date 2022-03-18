@@ -72,7 +72,6 @@ def register():
             
             return redirect(url_for('views.home')) # views is the blueprint, home is the function. We could also just do "/"
 
-        print(password2)
     return render_template("register.html", user=current_user)
 
 @auth.route('/delete/<int:id>')
@@ -83,4 +82,4 @@ def delete_link(id):
         db.session.commit()
         return redirect(url_for('views.home'))
     except:
-        return "Try again later."
+        flash('Try again later.', category='error')

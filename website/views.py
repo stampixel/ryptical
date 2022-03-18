@@ -12,7 +12,6 @@ views = Blueprint('views', __name__)
 @login_required
 def home():
     if request.method == 'POST':
-
         # make a seperate route for this, do what you did for /delete/
         try:
             if request.form['update_profile'] == 'Update Profile':
@@ -83,7 +82,10 @@ def home():
 
 @views.route('/')
 def index():
-    return render_template('index.html', user=current_user)
+    if current_user.is_authenticated:
+        return redirect(url_for('views.home'))
+    else:
+        return render_template('index.html', user=current_user)
 
 @views.route('/@<username>')
 def show_user(username):
