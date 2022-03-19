@@ -15,15 +15,16 @@ def home():
         # make a seperate route for this, do what you did for /delete/
         try:
             if request.form['update_profile'] == 'Update Profile':
-                print("hello world")
                 pfp = request.form['pfp']
                 background = request.form['background']
                 pfp_valid = validators.url(pfp)
                 background_valid = validators.url(background)
 
+
+
                 # delete_profile = Profile.query.get(user_id=current_user.id)
                 delete_profile = Profile.query.filter_by(user_id=current_user.id).first()
-
+                # if the values are none, just set it to the old values
                 if pfp == '':
                     pfp = delete_profile.pfp
                 if background == '':

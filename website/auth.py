@@ -75,6 +75,7 @@ def register():
     return render_template("register.html", user=current_user)
 
 @auth.route('/delete/<int:id>')
+@login_required
 def delete_link(id):
     link_to_delete = Link.query.get_or_404(id)
     try:
@@ -83,3 +84,10 @@ def delete_link(id):
         return redirect(url_for('views.home'))
     except:
         flash('Try again later.', category='error')
+
+
+
+@auth.route('/edit/<int:id>') # remember to edit editor.html to make the thing redirect to here
+@login_required
+def edit_link(id):
+    pass
