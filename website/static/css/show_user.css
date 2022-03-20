@@ -8,7 +8,8 @@ html {
 
 body {
     color: #fff;
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+	font-family: 'DejaVu Sans Mono', monospace;;
     font-size: 15px;
     letter-spacing: 2px;
 }
