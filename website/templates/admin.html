@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block head %} <title>Admin</title> {% endblock %}
+
+{% block content %} 
+<div class="container">
+    <form method="POST">
+        <h3 align="center">Admin Login</h3>
+        <div class="form-group">
+            <label for="password">Password</label> 
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Enter</button>
+    </form>
+</div>
+{% endblock %}
