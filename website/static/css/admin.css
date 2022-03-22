@@ -1,0 +1,27 @@
+html, body {
+    font-family: 'DejaVu Sans Mono', monospace;
+    background: #3B3228;
+    height: 100%;
+}
+
+p {
+    color: #beb55b;
+}
+
+a {
+    cursor: pointer;
+    color: #d0c8c6;
+}
+
+button {
+    border: 1px solid #534636;
+    border-radius: 5px;
+    background: #beb55b;
+    color: rgb(255, 255, 255);
+    font-style: italic;
+    padding: 5px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    font-size: 15px;
+}
+   
