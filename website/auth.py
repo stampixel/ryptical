@@ -92,10 +92,13 @@ def delete_link(id):
 def edit_link(id):
     pass
 
-@auth.route('/admin', methods=['GET', 'POST'])
-def admin_panel():
-    if request.method == 'POST':
-        password = request.form['password']
-        if generate_password_hash(password, method='sha256') == "sha256$UcZ2R17piOwDygp3$3c334e6fcfd4a689ffab2d1a0de96cd26b169e5c99fb69cc86eed500dfd83edb":
-            return render_template("admin_panel.html")
-    return render_template("admin.html") # make html for admin panel.
+# @auth.route('/admin', methods=['GET', 'POST'])
+# def admin_panel():
+#     print("hello world")
+#     if request.method == 'POST':
+#         password = generate_password_hash(request.form['password'], method='sha256')
+#         print(password)
+#         if check_password_hash("sha256$WWssn1fvjk0J4HLU$eb14659a7bca91d2b6b4f5a2093da7a274c9b7fa036fcdc033c68d2a5ec3350a", password):
+#             print("hellowrodl")
+#             return render_template("admin_panel.html")
+#     return render_template("admin.html") # make html for admin panel.
