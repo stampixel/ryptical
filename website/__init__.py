@@ -9,7 +9,7 @@ from os import path
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
-admin = Admin()
+
 
 
 def create_app():
@@ -17,7 +17,6 @@ def create_app():
     app.config['SECRET_KEY'] = 'Secret Code'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
-    admin.init_app(app)
 
     from .models import User, Profile, Link
 
@@ -27,10 +26,12 @@ def create_app():
 
     from .views import views
     from .auth import auth
+    # from .admin import admin
 
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
+    # app.register_blueprint(admin, url_prefix='/')
 
 
     from .models import Link, User, Profile
@@ -42,6 +43,10 @@ def create_app():
     login_manager.login_view = 'auth.login' # where flask reedirects us if the user is not logged in
     login_manager.init_app(app) # telling login manager which app we are using
      
+    admin = Admin()
+    admin.view
+    admin.init_app(app)
+
 
     @login_manager.user_loader
     def load_user(id):
