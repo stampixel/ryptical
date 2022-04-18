@@ -20,10 +20,6 @@ def create_app():
 
     from .models import User, Profile, Link
 
-    admin.add_view(ModelView(User, db.session))
-
-
-
     from .views import views
     from .auth import auth
     # from .admin import admin
@@ -44,7 +40,7 @@ def create_app():
     login_manager.init_app(app) # telling login manager which app we are using
      
     admin = Admin()
-    admin.view
+    admin.add_view(ModelView(User, db.session))
     admin.init_app(app)
 
 
